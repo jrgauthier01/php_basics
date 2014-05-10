@@ -435,5 +435,18 @@ $item=end($fred); // keeps the last element of the array in $item
 
 // Practical PHP ===============================================
 
+printf("There are %d items in your basket \n", 3); 
+printf("The result is: $ %.2f", 123.42 / 12);
+
+// check out formatting and string padding options on p. 160 of the pdf. 
+
+echo time(); 
+
+echo mktime(0, 0, 0, 1, 1, 2000); // see p. 162 of pdf. 
+date($format, $timestamp); 
+// check : http://tinyurl.com/phpdatefuncs 
+echo date("l F jS, Y - g:ia", time());
+
+// check date Constants on p. 164 of the pdf. 
  
 ?>
