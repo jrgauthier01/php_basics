@@ -448,5 +448,156 @@ date($format, $timestamp);
 echo date("l F jS, Y - g:ia", time());
 
 // check date Constants on p. 164 of the pdf. 
+
+// File handling ================================================ : 
+// stick to a lower-case convention for filenames. 
+
+// check if a file exists : 
+if (file_exists("testfile.txt")) echo "File exists";
+
+$fh = fopen("testfile.txt", 'w') or die("Failed to create file"); 
+$text = <<<_END
+Line 1
+Line 2
+Line 3
+_END;
+
+// Read file : 
+$fh = fopen("testfile.txt", 'r') or
+die("File does not exist or you lack permission to open it"); 
+$line = fgets($fh);
+fclose($fh);
+echo $line;
+
+// Copying files : 
+copy('file1.txt','file2.txt') or die("Could not copy file"); 
+echo "File successfully copied to 'testfile2.txt"; 
+// or : 
+if (!copy('file1.txt','file2.txt')) echo "we have a problem"; 
+
+// move a file : 
+if (!rename('file1.txt','file2.txt'))
+ echo "problem"; 
  
+// deleting a file : 
+// if (!unlink('testfile')) echo blabla; 
+
+// updating a file : 
+$fh = fopen("testfile.txt", 'r+') or die("Failed to open file"); 
+$text = fgets($fh);
+fseek($fh, 0, SEEK_END);
+fwrite($fh, "$text") or die("Could not write to file"); 
+fclose($fh);
+echo "File 'testfile.txt' successfully updated";
+
+// to go to a specific position, e..g 18 : 
+fseek($fh, 18, SEEK_SET);
+// to 23 from 18 : 
+fseek($fh, 5, SEEK_CUR);
+
+// Locking files for Multiple Accesses : 
+// function is flock : 
+// e.g. : 
+$fh = fopen("testfile.txt", 'r+') or die("Failed to open file"); 
+$text = fgets($fh);
+
+if (flock($fh, LOCK_EX)) 
+{
+fseek($fh, 0, SEEK_END);
+fwrite($fh, "$text") or die("Could not write to file"); 
+flock($fh, LOCK_UN);
+}
+fclose($fh);
+echo "File 'testfile.txt' successfully updated";
+
+// try to call it right before and end it right after the fwrite function 
+
+// to read an entire file : 
+// use : file_get_contents("testfile.txt"); 
+// e.g. : file_get_contents("http://oreilly.com"); 
+
+// Uploading files : 
+e.g.:  
+<?php // upload.php
+echo <<<_END
+<html><head><title>PHP Form Upload</title></head><body>
+<form method='post' action='upload.php' enctype='multipart/form-data'>
+Select File: <input type='file' name='filename' size='10' /> <input type='submit' value='Upload' />
+</form>
+_END;
+
+// see page 174 : 
+if ($_FILES) {
+ $name = $_FILES['filename']['name']; 
+ move_uploaded_file($_FILES['filename']['tmp_name'], $name); 
+ echo "Uploaded image '$name'<br /><img src='$name' />";
+}
+
+// $_FILES['file']['name'], $_FILES['file']['type'], $_FILES['file']['size'], $_FILES['file']['tmp_name']
+// $_FILES['file']['error']. 
+
+// types are (p. 175): 
+// application/pdf application/zip audio/mpeg, image/gif, image/jpeg, image/png, etc... 
+
+// Form Data Validation : 
+
+<?php // upload2.php
+echo <<<_END
+<html><head><title>PHP Form Upload</title></head><body>
+<form method='post' action='upload2.php' enctype='multipart/form-data'> Select a JPG, GIF, PNG or TIF File:
+<input type='file' name='filename' size='10' />
+<input type='submit' value='Upload' /></form>
+_END;
+if ($_FILES) {
+$name = $_FILES['filename']['name'];
+switch($_FILES['filename']['type']) 
+ {
+ case 'image/jpeg': $ext = 'jpg';  break; 
+
+ case 'image/gif': $ext = 'gif'; break; 
+
+ case 'image/png': $ext = 'png'; break; 
+
+ case 'image/tiff': $ext = 'tif'; $ext = '';
+
+default: $ext = ''; break; 
+}
+
+if ($ext) 
+{
+  $n = "image.$ext"; 
+  move_uploaded_file($_FILES['filename']['tmp_name'], $n); 
+  echo "Uploaded image '$name' as '$n':<br />";
+  echo "<img src='$n' />";
+ }
+ else echo "'$name' is not an accepted image file"; 
+}
+else echo "No image has been uploaded";
+echo "</body></html>"; 
+?>
+
+// A good thing to do, switch to lower case : 
+$name = strtolower(preg_replace("/[^A-Za-z0-9.]/", "", $name));
+
+// System Calls =================================================
+
+e.g.: 
+$cmd="ls"; 
+exec(escapeshellcmd($cmd), $output, $status); 
+if ($status) echo "Exec command failed"; 
+
+// You should also note the use of the escapeshellcmd function. 
+// It is a good habit to always use this when issuing an exec 
+// call because it sanitizes the command string, preventing the 
+// execution of arbitrary commands should you supply user input to the call.
+// Benefits of XHTML : Many. Code is more compact, faster parser, etc. 
+// Start using it now. 
+// <input type='submit' />
+// <p> </p> 
+// <b> fagagasdf <i>something</i></b>
+// all lsower-case tags. 
+// * * * SEE PAGE : 180 of PDF 
+// xhtml validation : go to page : p. 182 
+
+// sql is case insensitve 
 ?>
