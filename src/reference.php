@@ -600,4 +600,12 @@ if ($status) echo "Exec command failed";
 // xhtml validation : go to page : p. 182 
 
 // sql is case insensitve 
+
+// FORM HANDLING ================================================
+// p.282 of the pdf. 
+// Always initialize every variable you use !!! 
+
+
+
+
 ?>
