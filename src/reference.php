@@ -1,5 +1,7 @@
 <?php 
 
+ // ================================ BASICS ================================= 
+
  echo "allo \n"; 
  $variable1 = 1; 
  $variable2 = " test "; 
@@ -82,6 +84,9 @@
  // sanitize first : 
  $came_from=htmlentities($_SERVER['HTTP_REFERER']);
  echo "a: [" . (20 > 9) . "]<br />";
+ 
+ // ================================ CONTROL STATEMENTS ================================= 
+ 
  // if you want to compare strings, use the identity operator. 
  // otherwise the strings will be converted into numbers : 
  if ($string1 === $string2)  // or : !===
@@ -401,7 +406,7 @@ foreach ($products as $section => $items)
       echo "$section:\t$key\t($value)<br>";
 echo "</pre>";
  
-// ARRAY FUNCTIONS =============================================
+// ================================== ARRAY FUNCTIONS =============================================
 
 is_array($name); // to check whether the variable $name is an array or not. 
 
@@ -456,7 +461,7 @@ echo date("l F jS, Y - g:ia", time());
 
 // check date Constants on p. 164 of the pdf. 
 
-// File handling ================================================ : 
+// ========================================== File handling ================================================ : 
 // stick to a lower-case convention for filenames. 
 
 // check if a file exists : 
