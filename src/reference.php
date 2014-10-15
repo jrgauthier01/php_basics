@@ -194,7 +194,7 @@ require_once "library.php";
 function_exists("name_of_function"); 
 echo phpversion(); 
 
-// CLASSES ---------
+// ========================= CLASSES ============================
 // data associated with classes are called properties while its 
 // functions are called methods. 
 // inheritance : superclass and subclass (aka derived class) : 
@@ -212,7 +212,14 @@ class User
   {
     echo "bla bla bla"; 
   }
+
+ public function do_something()
+ {
+   echo "you can call this function from outside the class"	
+ }
+	
 }
+$tmp->do_something(); 
 
 print_r($object); // this is a very useful function. It prints 
 				  // info about the a variable in a human-readable 
