@@ -38,6 +38,10 @@
  asodifsadfas 
  asodfiasdfaos "; 
  
+ // Escape sequence ======================
+ 
+ // use a backlash \ , e.g. "\*"
+ 
  $number=123+566; 
  echo substr($number,1,1),"\n"; // (string,start,howmany) (arrays start at 0)
  
