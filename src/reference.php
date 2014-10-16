@@ -449,6 +449,12 @@ $item=reset($fred); // keep first element of the array in $item
 end($fred); 
 $item=end($fred); // keeps the last element of the array in $item
 
+// To merge multiple arrays : Be careful though. If you have the same key 
+// in both arrays. The later value will overwrite the first one. 
+
+$result=array_merge($array1, $array2); 
+
+
 // Practical PHP ===============================================
 
 printf("There are %d items in your basket \n", 3); 
