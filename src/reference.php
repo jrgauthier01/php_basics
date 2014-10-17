@@ -353,6 +353,17 @@ class Tiger extends Wildcat
   }
 }
 
+
+// =================== Arrays the Sequel ======================
+
+// if you have an array of strings : 
+$test=array('string1','string2','string3'); 
+// You can loop over them by using a foreach loop : 
+foreach($test as $item)
+ {
+  echo "item is ".$item; 
+ }
+
 // this code increments the array of paper every time 
 // a new value is assigned : 
 $paper[] = "copier"; 
